@@ -1,0 +1,42 @@
+{
+  "name": "clipboard-collector",
+  "version": "1.0.0",
+  "description": "桌面剪贴收集器 - 粘贴图片和文字，自动归类",
+  "author": "Clipboard Collector",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron ."
+  },
+  "dependencies": {
+    "sql.js": "^1.10.0",
+    "tesseract.js": "^5.0.0"
+  },
+  "devDependencies": {
+    "electron": "^33.0.0"
+  },
+  "build": {
+    "appId": "com.clipboard.collector",
+    "productName": "剪贴收集器",
+    "directories": {
+      "output": "dist"
+    },
+    "files": [
+      "main.js",
+      "preload.js",
+      "database.js",
+      "ocr.js",
+      "association.js",
+      "renderer/**/*"
+    ],
+    "electronDownload": {
+      "mirror": "https://npmmirror.com/mirrors/electron/"
+    },
+    "win": {
+      "target": [
+        "portable"
+      ],
+      "signAndEditExecutable": false,
+      "artifactName": "剪贴收集器-${version}.exe"
+    }
+  }
+}

@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=340">
+<title>剪贴收集器</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<div class="container">
+  <!-- 标题栏 -->
+  <div class="titlebar">
+    <div class="title-left">
+      <span class="title-icon">📋</span>
+      <span class="title-text">剪贴收集器</span>
+    </div>
+    <div class="title-right">
+      <button class="collect-toggle" id="collectToggle" title="切换收集模式">📥</button>
+      <button class="quick-collect-btn" id="quickCollectBtn" title="快速收集当前剪贴板">✏️</button>
+      <button class="settings-btn" id="settingsBtn" title="设置">⚙️</button>
+      <button class="close-btn" id="closeBtn">✕</button>
+    </div>
+  </div>
+
+  <!-- 统计栏 -->
+  <div class="stats-bar">
+    <span>今日 <strong id="todayCount">0</strong></span>
+    <span class="stat-divider">|</span>
+    <span>累计 <strong id="totalCount">0</strong></span>
+    <span class="stat-divider">|</span>
+    <span>分组 <strong id="groupCount">0</strong></span>
+    <button class="clear-btn" id="clearBtn" title="清空所有数据">🗑️</button>
+    <span class="collect-badge" id="collectBadge">收集中</span>
+  </div>
+
+  <!-- 分组筛选栏（默认隐藏） -->
+  <div class="group-bar" id="groupBar" style="display:none">
+    <button class="group-tab active" data-group-id="">全部</button>
+  </div>
+
+  <!-- 搜索框 -->
+  <div class="search-box">
+    <input type="text" id="searchInput" placeholder="搜索标签、内容、来源…" />
+  </div>
+
+  <!-- 设置面板（默认隐藏） -->
+  <div class="settings-panel" id="settingsPanel" style="display:none">
+    <div class="settings-row">
+      <span class="settings-label">🤖 DeepSeek API Key</span>
+      <div class="settings-input-row">
+        <input type="password" class="settings-input" id="apiKeyInput" placeholder="sk-..." />
+        <button class="settings-save-btn" id="apiKeySaveBtn">保存</button>
+      </div>
+      <span class="settings-hint" id="apiKeyStatus"></span>
+    </div>
+  </div>
+
+  <!-- 条目列表 -->
+  <div class="items-list" id="itemsList">
+    <div class="empty-state" id="emptyState">
+      <div class="empty-icon">📋</div>
+      <div class="empty-text">还没有收集任何内容</div>
+      <div class="empty-hint">开启收集模式，复制内容即可自动采集</div>
+    </div>
+  </div>
+</div>
+
+<!-- ── 详情弹窗模态框 ──────────────────────────── -->
+<div class="modal-overlay" id="detailModal">
+  <div class="modal-container">
+    <div class="modal-header">
+      <button class="modal-back" id="modalBack">← 返回</button>
+      <span class="modal-title">条目详情</span>
+      <button class="modal-close" id="modalClose">✕</button>
+    </div>
+    <div class="modal-body" id="modalBody">
+      <!-- 由 JS 动态填充 -->
+    </div>
+    <div class="modal-actions" id="modalActions">
+      <button class="modal-btn modal-btn-copy" id="modalCopyBtn">📋 复制内容</button>
+      <button class="modal-btn modal-btn-analyze" id="modalAnalyzeBtn">🤖 AI 分析</button>
+      <button class="modal-btn modal-btn-delete" id="modalDeleteBtn">🗑️ 删除</button>
+    </div>
+    <!-- AI 分析结果（模态框内） -->
+    <div class="modal-analysis" id="modalAnalysis" style="display:none">
+      <div class="modal-analysis-loading">🤖 悠仁正在分析…</div>
+      <div class="modal-analysis-result" id="modalAnalysisResult"></div>
+    </div>
+  </div>
+</div>
+
+<script src="app.js"></script>
+</body>
+</html>
