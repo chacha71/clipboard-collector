@@ -5,14 +5,17 @@
   "author": "Clipboard Collector",
   "main": "main.js",
   "scripts": {
-    "start": "electron ."
+    "start": "electron .",
+    "build": "electron-builder --win portable",
+    "build:installer": "electron-builder --win"
   },
   "dependencies": {
     "sql.js": "^1.10.0",
     "tesseract.js": "^5.0.0"
   },
   "devDependencies": {
-    "electron": "^33.0.0"
+    "electron": "^33.0.0",
+    "electron-builder": "^25.1.8"
   },
   "build": {
     "appId": "com.clipboard.collector",
@@ -20,13 +23,15 @@
     "directories": {
       "output": "dist"
     },
+    "icon": "build/icon.ico",
     "files": [
       "main.js",
       "preload.js",
       "database.js",
       "ocr.js",
       "association.js",
-      "renderer/**/*"
+      "renderer/**/*",
+      "build/icon.ico"
     ],
     "electronDownload": {
       "mirror": "https://npmmirror.com/mirrors/electron/"
@@ -36,6 +41,9 @@
         "portable"
       ],
       "signAndEditExecutable": false,
+      "artifactName": "剪贴收集器-${version}.exe"
+    },
+    "portable": {
       "artifactName": "剪贴收集器-${version}.exe"
     }
   }
